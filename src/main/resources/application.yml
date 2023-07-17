@@ -4,13 +4,15 @@ spring:
    profiles:
       include: rabbitmq-setup-props, executors-props, producer-props
       #, datasource-props
-   boot:
-      admin:
-         client:
-            url: http://localhost:9000
+   rabbitmq:
+      #host: ${rabbitmq_host}
+      #port: ${rabbitmq_port}
+      addresses: ${rabbitmq_address}
+      username: ${rabbitmq_username}
+      password: ${rabbitmq_password}      
 logging:
    level:
-      Root: INFO
+      Root: ${log_level}
       org.springframework.web.filter.CommonsRequestLoggingFilter: INFO
       com.zaxxer.hikari.HikariConfig: INFO
       com.zaxxer.hikari.pool.HikariPool: DEBUG
@@ -18,13 +20,12 @@ logging:
       console: "%d [%thread] %-5level %logger{36} - %msg %mdc%n"   
 management:
    server:
-      port: 8085
+      port: 9871
       ssl:
          enabled: false
    endpoints:
       web:
-         base-path: /actuator
+         base-path: /sssactuator
          exposure:
-            include: '*'
-server:
-   port: 8085
+            include: "*"
+      

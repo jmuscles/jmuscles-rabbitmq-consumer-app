@@ -1,0 +1,24 @@
+spring:
+   application:
+      name: jmuscles-rabbitmq-consumer-app
+   cloud:
+      config:
+         server:
+            awss3:
+               region: ${s3_region}
+               bucket: ${s3_bucket}
+amazon:
+   s3:
+      access-key: ${s3_access_key}
+      secret-key: ${s3_secret_key}   
+
+management:
+   server:
+      port: 9871
+      ssl:
+         enabled: false
+   endpoints:
+      web:
+         base-path: /sssactuator
+         exposure:
+            include: "*"
