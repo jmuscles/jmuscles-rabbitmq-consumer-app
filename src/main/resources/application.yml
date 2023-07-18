@@ -1,31 +1,12 @@
 spring:
-   application:
-      name: AsyncConsumer
-   profiles:
-      include: rabbitmq-setup-props, executors-props, producer-props
-      #, datasource-props
-   rabbitmq:
-      #host: ${rabbitmq_host}
-      #port: ${rabbitmq_port}
-      addresses: ${rabbitmq_address}
-      username: ${rabbitmq_username}
-      password: ${rabbitmq_password}      
-logging:
-   level:
-      Root: ${log_level}
-      org.springframework.web.filter.CommonsRequestLoggingFilter: INFO
-      com.zaxxer.hikari.HikariConfig: INFO
-      com.zaxxer.hikari.pool.HikariPool: DEBUG
-   pattern:
-      console: "%d [%thread] %-5level %logger{36} - %msg %mdc%n"   
-management:
-   server:
-      port: 9871
-      ssl:
-         enabled: false
-   endpoints:
-      web:
-         base-path: /sssactuator
-         exposure:
-            include: "*"
-      
+  application:
+    name: AsyncConsumer
+  profiles:
+    group:
+       local: rabbitmq-setup-props-local, executors-props-local, producer-props-local
+       dev: rabbitmq-setup-props-dev, executors-props-dev, producer-props-dev, datasource-props-dev
+       prod: rabbitmq-setup-props-prod, executors-props-prod, producer-props-prod, datasource-props-prod
+  cloud:
+    config:
+      server:
+        bootstrap: true
