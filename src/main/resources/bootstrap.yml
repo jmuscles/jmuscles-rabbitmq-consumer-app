@@ -3,6 +3,7 @@ spring:
     name: AsyncConsumer
   cloud:
     config:
+      name: ${spring.application.name}
       label: pass_from_args
       server:
         bootstrap: true

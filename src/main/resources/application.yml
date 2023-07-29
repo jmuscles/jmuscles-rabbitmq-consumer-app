@@ -1,11 +1,14 @@
 spring:
   application:
     name: AsyncConsumer
-  profiles:
-    group:
-       local: rabbitmq-setup-props-local, executors-props-local, producer-props-local
-       dev: rabbitmq-setup-props-dev, executors-props-dev, producer-props-dev, datasource-props-dev
-       prod: rabbitmq-setup-props-prod, executors-props-prod, producer-props-prod, datasource-props-prod
+ #--profile group/include are adding files from class path but not from confihg server, please pass it from run arguments
+  #profiles:
+    #group:
+      #docker-local: rabbitmq-setup-local,executors-local,producer-local
+      #local: rabbitmq-setup-local,executors-local,producer-local
+      #dev: rabbitmq-setup-dev,executors-dev,producer-dev,datasource-dev
+      #prod: rabbitmq-setup-prod,executors-prod,producer-prod,datasource-prod  
+        
   cloud:
     config:
       server:
