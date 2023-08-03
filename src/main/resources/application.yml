@@ -9,7 +9,7 @@ spring:
       #dev: rabbitmq-setup-dev,executors-dev,producer-dev,datasource-dev
       #prod: rabbitmq-setup-prod,executors-prod,producer-prod,datasource-prod  
         
-  cloud:
-    config:
-      server:
-        bootstrap: true
+#  cloud:
+#    config:
+#      server:
+#        bootstrap: true
