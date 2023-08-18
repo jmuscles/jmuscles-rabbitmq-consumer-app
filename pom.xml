@@ -24,6 +24,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<start-class>com.jmuscles.async.consumer.Application</start-class>
 	</properties>
 
 	<dependencyManagement>
@@ -66,10 +67,12 @@
 			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
 
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bootstrap</artifactId>
 		</dependency>
+		-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
