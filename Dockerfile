@@ -7,5 +7,7 @@ MAINTAINER javamuscles
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} jmuscles-rabbitmq-consumer-app-j8sb2713-1.0.jar
 
+#RUN curl -L https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/latest/download/opentelemetry-javaagent.jar --output opentelemetry-javaagent.jar
 # Set the ENTRYPOINT with CMD to pass JAVA_OPTS to the Java application
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar jmuscles-rabbitmq-consumer-app-j8sb2713-1.0.jar" ]
+COPY opentelemetry-javaagent.jar opentelemetry-javaagent.jar
+ENTRYPOINT [ "sh", "-c", "java -javaagent:opentelemetry-javaagent.jar $JAVA_OPTS -jar jmuscles-rabbitmq-consumer-app-j8sb2713-1.0.jar" ]

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default values
-#DEFAULT_AWS_ACCOUNT_ID=
+DEFAULT_AWS_ACCOUNT_ID="539416276730"
 DEFAULT_REGION="us-east-2"
 DEFAULT_REPOSITORY_NAME="jmuscles"
 DEFAULT_DOCKER_IMAGE_TAG="jmuscles-rabbitmq-consumer-app-j8sb2713"
@@ -47,3 +47,7 @@ echo "Pushing Docker image to ECR..."
 docker push $ECR_IMAGE_URI
 
 echo "Docker image pushed to ECR: $ECR_IMAGE_URI"
+
+#For refreshing the authentication token
+#aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 539416276730.dkr.ecr.us-east-2.amazonaws.com
+

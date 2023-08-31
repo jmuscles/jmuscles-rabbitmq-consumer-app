@@ -1,0 +1,149 @@
+rabbitmq-config:
+   exchanges:
+   -  name: AP_GENERIC_DIRECT_EXCHANGE
+      type: direct
+      parent: null
+#   -  name: AP_ORDER_FANOUT_EXCHANGE
+#      type: direct
+#      parent: null
+
+   queueSetsConfig:
+      GENERIC_QConfig:
+         exchange: AP_GENERIC_DIRECT_EXCHANGE
+         name: GENERIC_Q
+         arguments:
+            primary:
+               -x-queue-type: quorum
+            retry:
+               -x-queue-type: quorum
+            abandoned:
+               -x-queue-type: quorum
+#      ORDER_PROCESSING_QConfig:
+#         exchange: AP_ORDER_FANOUT_EXCHANGE
+#         name: ORDER_PROCESSING_Q
+#         arguments:
+#            primary:
+#               -x-queue-type: quorum
+#            retry:
+#               -x-queue-type: quorum
+#            abandoned:
+#               -x-queue-type: quorum
+#      ORDER_EMAIL_QConfig:
+#         exchange: AP_ORDER_FANOUT_EXCHANGE
+#         name: ORDER_EMAIL_Q
+#         arguments:
+#            primary:
+#               -x-queue-type: quorum
+#            retry:
+#               -x-queue-type: quorum
+#            abandoned:
+#               -x-queue-type: quorum
+#      ORDER_SHIPPING_QConfig:
+#         exchange: AP_ORDER_FANOUT_EXCHANGE
+#         name: ORDER_SHIPPING_Q
+#         arguments:
+#            primary:
+#               -x-queue-type: quorum
+#            retry:
+#               -x-queue-type: quorum
+#            abandoned:
+#               -x-queue-type: quorum
+               
+   queueSetsProcessingConfig:
+      GENERIC_QConfig:
+         primary:
+            disableProcessing: false
+            listenerType: RequeueModifiedMessageListener
+            concurrency: 1-5
+            processor: asyncPayloadMessageProcessor
+         retry:
+            disableProcessing: false
+            listenerType: RequeueModifiedMessageListener
+            concurrency: 1-5
+            processor: asyncPayloadMessageProcessor
+            retryOnlyConfig:
+               acceptingMessage: true
+               retryAttempt: 2
+               retryAfterDelay: true
+               retryInterval:
+                  - 300
+                  - 600
+                  - 1200
+         abandoned:
+            disableProcessing: true
+            listenerType: RequeueModifiedMessageListener
+            concurrency: 1-5
+            processor: persistMessageToDBProcessor
+#      ORDER_PROCESSING_QConfig:
+#         primary:
+#            disableProcessing: false
+#            listenerType: RequeueModifiedMessageListener
+#            concurrency: 1-5
+#            processor: asyncPayloadMessageProcessor
+#         retry:
+#            disableProcessing: false
+#            listenerType: RequeueModifiedMessageListener
+#            concurrency: 1-5
+#            processor: asyncPayloadMessageProcessor
+#            retryOnlyConfig:
+#               acceptingMessage: true
+#               retryAttempt: 2
+#               retryAfterDelay: true
+#               retryInterval:
+#                  - 300
+#                  - 600
+#                  - 1200
+#         abandoned:
+#            disableProcessing: true
+#            listenerType: RequeueModifiedMessageListener
+#            concurrency: 1-5
+#            processor: persistMessageToDBProcessor
+#      ORDER_EMAIL_QConfig:
+#         primary:
+#            disableProcessing: false
+#            listenerType: RequeueModifiedMessageListener
+#            concurrency: 1-5
+#            processor: asyncPayloadMessageProcessor
+#         retry:
+#            disableProcessing: false
+#            listenerType: RequeueModifiedMessageListener
+#            concurrency: 1-5
+#            processor: asyncPayloadMessageProcessor
+#            retryOnlyConfig:
+#               acceptingMessage: true
+#               retryAttempt: 2
+#               retryAfterDelay: true
+#               retryInterval:
+#                  - 300
+#                  - 600
+#                  - 1200
+#         abandoned:
+#            disableProcessing: true
+#            listenerType: RequeueModifiedMessageListener
+#            concurrency: 1-5
+#            processor: persistMessageToDBProcessor
+#      ORDER_SHIPPING_QConfig:
+#         primary:
+#            disableProcessing: false
+#            listenerType: RequeueModifiedMessageListener
+#            concurrency: 1-5
+#            processor: asyncPayloadMessageProcessor
+#         retry:
+#            disableProcessing: false
+#            listenerType: RequeueModifiedMessageListener
+#            concurrency: 1-5
+#            processor: asyncPayloadMessageProcessor
+#            retryOnlyConfig:
+#               acceptingMessage: true
+#               retryAttempt: 2
+#               retryAfterDelay: true
+#               retryInterval:
+#                  - 300
+#                  - 600
+#                  - 1200
+#         abandoned:
+#            disableProcessing: true
+#            listenerType: RequeueModifiedMessageListener
+#            concurrency: 1-5
+#            processor: persistMessageToDBProcessor
+#                        
