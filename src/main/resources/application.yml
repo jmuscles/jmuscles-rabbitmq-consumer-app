@@ -1,3 +1,6 @@
-    spring:
-       application:
-          name: AsyncConsumer
+spring:
+  application:
+    name: AsyncConsumer
+logging:
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - MDC: %mdc %msg%n"
