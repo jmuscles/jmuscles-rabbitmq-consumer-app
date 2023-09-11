@@ -42,6 +42,8 @@ ECR_IMAGE_URI="$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPOSITORY_NAME:$D
 echo "Tagging Docker image: $DOCKER_IMAGE_TAG as $ECR_IMAGE_URI..."
 docker tag $DOCKER_IMAGE_TAG $ECR_IMAGE_URI
 
+aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+
 # Push the Docker image to ECR
 echo "Pushing Docker image to ECR..."
 docker push $ECR_IMAGE_URI
