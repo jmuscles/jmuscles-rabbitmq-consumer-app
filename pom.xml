@@ -10,8 +10,8 @@
 	</parent>
 
 	<groupId>com.jmuscles</groupId>
-	<artifactId>jmuscles-rabbitmq-consumer-app</artifactId>
-	<version>j8sb2713</version>
+	<artifactId>jmuscles-rabbitmq-consumer-app-j8sb2713</artifactId>
+	<version>1.0</version>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -19,7 +19,13 @@
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 		<jasypt.version>1.9.3</jasypt.version>
 
-		<jmuscles-rabbitmq-consumer.version>j8sb2713</jmuscles-rabbitmq-consumer.version>
+		<jmuscles-rabbitmq-consumer.version>j8sb2713-0.1</jmuscles-rabbitmq-consumer.version>
+
+		<javax.annotation-api.version>1.3.2</javax.annotation-api.version>
+		<otel-api.version>1.28.0</otel-api.version>
+		<otel-instrumentation-annotations.version>1.28.0</otel-instrumentation-annotations.version>
+		<otel-api-trace.version>0.13.1</otel-api-trace.version>
+		<otel-api-metrics.version>1.10.0-alpha-rc.1</otel-api-metrics.version>
 
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -50,11 +56,25 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+
 		</dependency>
 		<!-- -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+
 		</dependency>
 
 		<dependency>
@@ -77,17 +97,53 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-layout-template-json</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-spring-cloud-config-client</artifactId>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
 		<dependency>
 			<groupId>com.amazonaws</groupId>
@@ -103,58 +159,44 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-api</artifactId>
+			<version>${otel-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.opentelemetry.instrumentation</groupId>
+			<artifactId>opentelemetry-instrumentation-annotations</artifactId>
+			<version>${otel-instrumentation-annotations.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-api-trace</artifactId>
+			<version>${otel-api-trace.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-api-metrics</artifactId>
+			<version>${otel-api-metrics.version}</version>
+		</dependency>
+
 	</dependencies>
 
-	<!-- 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
-	</build>
--->
-
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.13</version>
-				<executions>
-					<execution>
-						<id>default</id>
-						<goals>
-							<goal>build</goal>
-							<goal>push</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<repository>goel1man/jmuscles-rabbitmq-consumer-app</repository>
-					<tag>${project.version}</tag>
-					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-				</configuration>
-
-				<!-- To make this work on JDK 9+ -->
-				<!-- 
-				<dependencies>
-					<dependency>
-						<groupId>javax.activation</groupId>
-						<artifactId>javax.activation-api</artifactId>
-						<version>1.2.0</version>
-					</dependency>
-				</dependencies>
-				-->
-			</plugin>
-
 		</plugins>
 	</build>
 

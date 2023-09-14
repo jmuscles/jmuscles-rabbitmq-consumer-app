@@ -1,0 +1,15 @@
+spring:
+   application:
+      name: AsyncConsumer
+   rabbitmq:
+      addresses: host.docker.internal:5672
+      username: guest
+      password: guest
+logging:
+   level:
+      Root: INFO
+      org.springframework.web.filter.CommonsRequestLoggingFilter: INFO
+      com.zaxxer.hikari.HikariConfig: INFO
+      com.zaxxer.hikari.pool.HikariPool: DEBUG
+   pattern:
+      console: "%d [%thread] %-5level %logger{36} - %msg %mdc%n"   
