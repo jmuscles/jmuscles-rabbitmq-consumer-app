@@ -35,8 +35,13 @@ public class MetricsGenerator {
 
 	@Value("otel-api-metrics.version")
 	private String metricsApiVersion;
+	
+	@Value("spring.application.name")
+	private String applicationName;
 
-	private final Meter meter = GlobalOpenTelemetry.meterBuilder("telemetry.metrics.jmuscles-rabbitmq-consumer")
+	
+
+	private final Meter meter = GlobalOpenTelemetry.meterBuilder("telemetry.metrics."+applicationName)
 			.setInstrumentationVersion(metricsApiVersion).build();
 
 	private LongCounter numberOfExecutions;

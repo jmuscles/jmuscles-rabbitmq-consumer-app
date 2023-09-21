@@ -4,3 +4,14 @@ spring:
 logging:
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - MDC: %mdc %msg%n"
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
+    com.jmuscles.processing.executor.implementation.*: DEBUG
+    com.jmuscles.rest.*: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+             
+    
