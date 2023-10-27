@@ -3,13 +3,13 @@
  */
 package com.jmuscles.async.consumer.customization.demo;
 
-import com.jmuscles.processing.schema.requestdata.RequestData;
+import java.io.Serializable;
 
 /**
- * @author manis
+ * @author manish
  *
  */
-public class CustomizedRequestData implements RequestData {
+public class DemoCustomRequestData implements Serializable {
 
 	/**
 	 * 

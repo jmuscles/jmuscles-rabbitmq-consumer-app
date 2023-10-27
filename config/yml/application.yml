@@ -2,8 +2,8 @@ spring:
    application:
       name: AsyncConsumer
    rabbitmq:
-      #host: b-74c42180-ee61-4e4f-ae74-39f5ff7a7f67.mq.us-east-2.amazonaws.com
-      #port: 5671
+#host: b-74c42180-ee61-4e4f-ae74-39f5ff7a7f67.mq.us-east-2.amazonaws.com
+#port: 5671
       addresses: localhost:5672
       username: guest
       password: guest
@@ -16,56 +16,13 @@ spring:
 #      com.zaxxer.hikari.HikariConfig: INFO
 #      com.zaxxer.hikari.pool.HikariPool: DEBUG
 #   pattern:
-#      console: "%d [%thread] %-5level %logger{36} - %msg %mdc%n"   
+#      console: "%d [%thread] %-5level %logger{36} - %msg %mdc%n"
 management:
    server:
       ssl:
          enabled: false
    endpoints:
       web:
-         #base-path: /sssactuator
+#base-path: /sssactuator
          exposure:
-            include: "*"
-            
-#########################################################################################
-rabbitmq-config:
-   exchanges:
-   -  name: AP_GENERIC_DIRECT_EXCHANGE
-      type: direct
-      parent: null
-   queueSetsConfig:
-      GENERIC_QConfig:
-         exchange: AP_GENERIC_DIRECT_EXCHANGE
-         name: GENERIC_Q
-         arguments:
-            primary:
-               -x-queue-type: quorum
-            retry:
-               -x-queue-type: quorum
-            abandoned:
-               -x-queue-type: quorum               
-   queueSetsProcessingConfig:
-      GENERIC_QConfig:
-         primary:
-            disableProcessing: false
-            listenerType: RequeueModifiedMessageListener
-            concurrency: 1-5
-            processor: asyncPayloadMessageProcessor
-         retry:
-            disableProcessing: false
-            listenerType: RequeueModifiedMessageListener
-            concurrency: 1-5
-            processor: asyncPayloadMessageProcessor
-            retryOnlyConfig:
-               acceptingMessage: true
-               retryAttempt: 2
-               retryAfterDelay: true
-               retryInterval:
-                  - 300
-                  - 600
-                  - 1200
-         abandoned:
-            disableProcessing: true
-            listenerType: RequeueModifiedMessageListener
-            concurrency: 1-5
-            processor: persistMessageToDBProcessor
+            include: '*'

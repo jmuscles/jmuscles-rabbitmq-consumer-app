@@ -5,9 +5,15 @@ logging:
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - MDC: %mdc %msg%n"
   level:
+    Root: INFO
     org.springframework.web.client.RestTemplate: DEBUG
     com.jmuscles.processing.executor.implementation.*: DEBUG
     com.jmuscles.rest.*: DEBUG
+    com.zaxxer.hikari.HikariConfig: DEBUG
+    com.zaxxer.hikari.pool.HikariPool: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    
+    
 management:
   endpoints:
     web:
