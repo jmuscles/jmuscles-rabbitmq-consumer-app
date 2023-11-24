@@ -27,14 +27,14 @@ jmuscles:
          tempconvert_soap:
             url: http://www.w3schools.com/xml/tempconvert.asmx
             validator: SimpleSoapCallValidator
-            httpHeader: 
+            httpHeader:
                Host: www.w3schools.com
                host: www.w3schools.com
             successCodePatterns:
                200: null
          reqres:
             url: https://reqres.in
-            httpHeader: 
+            httpHeader:
                Host: reqres.in
                host: reqres.in
             successCodePatterns:
@@ -46,8 +46,8 @@ jmuscles:
          jsonplaceholderpost:
             url: https://jsonplaceholder.typicode.com/posts
             httpHeader:
-               Host: jsonplaceholder.typicode.com            
-               host: jsonplaceholder.typicode.com            
+               Host: jsonplaceholder.typicode.com
+               host: jsonplaceholder.typicode.com
             successCodePatterns:
                200: null
                201: null

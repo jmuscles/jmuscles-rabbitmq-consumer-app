@@ -21,8 +21,8 @@ import com.jmuscles.props.util.RefreshBeansUtil;
 @RefreshScope
 public class RefreshBeans implements BeanFactoryAware {
 
-	public static final String[] BEANS_ARRAY = new String[] { "refreshBeanProps", "refreshBeanProcessing",
-			"refreshBeanProducer", "refreshBeanConsumer" };
+	public static final String[] BEANS_ARRAY = new String[] { "refreshBeanDbProps", "refreshBeanProps",
+			"refreshBeanProcessing", "refreshBeanProducer", "refreshBeanConsumer" };
 
 	private BeanFactory beanFactory;
 
