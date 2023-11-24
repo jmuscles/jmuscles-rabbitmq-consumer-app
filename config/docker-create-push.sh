@@ -52,4 +52,3 @@ echo "Docker image pushed to ECR: $ECR_IMAGE_URI"
 
 #For refreshing the authentication token
 #aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 539416276730.dkr.ecr.us-east-2.amazonaws.com
-
