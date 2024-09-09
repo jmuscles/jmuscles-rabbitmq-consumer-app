@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default values
-DEFAULT_AWS_ACCOUNT_ID="539416276730"
+DEFAULT_AWS_ACCOUNT_ID=<AWS_ACCOUNT_ID>
 DEFAULT_REGION="us-east-2"
 DEFAULT_REPOSITORY_NAME="jmuscles"
 DEFAULT_DOCKER_IMAGE_TAG="jmuscles-rabbitmq-consumer-app-j8sb2713"
