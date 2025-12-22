@@ -160,7 +160,7 @@
 			<artifactId>javax.annotation-api</artifactId>
 		</dependency>
 
-	    <dependency>
+	    <!--<dependency>
 	        <groupId>io.opentelemetry</groupId>
 	        <artifactId>opentelemetry-api</artifactId>
 	        <version>${otel.version}</version>
@@ -183,7 +183,7 @@
 	        <artifactId>opentelemetry-log4j-context-data-2.17-autoconfigure</artifactId>
 	        <version>1.28.0-alpha</version>
 	        <scope>runtime</scope>
-	    </dependency>
+	    </dependency>-->
 
 	</dependencies>
 
