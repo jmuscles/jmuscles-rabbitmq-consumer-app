@@ -1,0 +1,30 @@
+server:
+   port: 8083
+spring:
+   application:
+      name: JmusclesRabbitMqConsumer
+   profiles:
+      include: rabbitmq-config, executors-config
+   rabbitmq:
+      addresses: localhost:5672
+      username: guest
+      password: guest
+logging:
+   level:
+      Root: INFO
+      org.springframework.web.filter.CommonsRequestLoggingFilter: INFO
+      com.zaxxer.hikari.HikariConfig: INFO
+      com.zaxxer.hikari.pool.HikariPool: DEBUG
+   pattern:
+      console: "%d [%thread] %-5level %logger{36} [traceId=%X{trace_id}, spanId=%X{span_id}] %X - %msg%n"
+  
+management:
+   server:
+      port: 9872
+      ssl:
+         enabled: false
+   endpoints:
+      web:
+         base-path: /sssactuator
+         exposure:
+            include: "*"

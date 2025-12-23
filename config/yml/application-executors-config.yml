@@ -1,0 +1,65 @@
+cc-trans-posting-base-url: http://localhost:9090
+
+jmuscles:
+  executors-config:
+    restConfig:
+      connectionTimeout: 10000
+      readTimeout: 10000
+      addCallExecutionAttemptHeader: true		
+      commonHeaders:
+        Content-Type: "application/json"
+    restCalls:
+      captureTransaction:
+        url: "${cc-trans-posting-base-url}/transactions/capture"
+        httpHeader:
+           x-success-execution-attempt: 4
+        successCodePatterns:
+          200:
+            - ".*\"transactionStatus\"\\s*:\\s*\"CAPTURED\".*"
+            - ".*\"transactionId\"\\s*:\\s*\"TXN.*\".*"
+      updateLedger:
+        url: "${cc-trans-posting-base-url}/ledger/update"
+        httpHeader:
+           x-success-execution-attempt: 2
+        successCodePatterns:
+          200:
+            - ".*\"ledgerStatus\"\\s*:\\s*\"UPDATED\".*"
+            - ".*\"balance\"\\s*:\\s*5000.*"
+      fraudCheck:
+        url: "${cc-trans-posting-base-url}/fraud/check"
+        httpHeader:
+           x-success-execution-attempt: 2
+        successCodePatterns:
+          200:
+            - ".*\"fraudStatus\"\\s*:\\s*\"CLEAR\".*"
+            - ".*\"score\"\\s*:\\s*5.*"
+      notifyEmail:
+        url: "${cc-trans-posting-base-url}/notifications/email"
+        httpHeader:
+           x-success-execution-attempt: 1
+        successCodePatterns:
+          200:
+            - ".*\"notificationStatus\"\\s*:\\s*\"SENT\".*"
+            - ".*\"type\"\\s*:\\s*\"EMAIL\".*"
+      notifySms:
+        url: "${cc-trans-posting-base-url}/notifications/sms"
+        httpHeader:
+           x-success-execution-attempt: 2
+        successCodePatterns:
+          200:
+            - ".*\"notificationStatus\"\\s*:\\s*\"SENT\".*"
+            - ".*\"type\"\\s*:\\s*\"SMS\".*"
+      analyticsUpdate:
+        url: "${cc-trans-posting-base-url}/analytics/transactions"
+        httpHeader:
+           x-success-execution-attempt: 1
+        successCodePatterns:
+          200:
+            - ".*\"analyticsStatus\"\\s*:\\s*\"UPDATED\".*"
+      settlementPost:
+        url: "${cc-trans-posting-base-url}/settlement/post"
+        httpHeader:
+           x-success-execution-attempt: 1
+        successCodePatterns:
+          200:
+            - ".*\"settlementStatus\"\\s*:\\s*\"POSTED\".*"
