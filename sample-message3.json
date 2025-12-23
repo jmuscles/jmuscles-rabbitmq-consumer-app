@@ -1,0 +1,68 @@
+{
+    "requestDataList": [
+        {
+            "@type": "sequential",
+            "sequentialDataList": [
+                {
+                    "@type": "rest",
+                    "method": "POST",
+                    "configKey": "fraudCheck",
+                    "body": {
+                        "transactionId": "TXN12345"
+                    }
+                },
+                {
+                    "@type": "rest",
+                    "method": "POST",
+                    "configKey": "captureTransaction",
+                    "body": {
+                        "amount": 100,
+                        "cardNumber": "4111111111111111"
+                    }
+                },
+                {
+                    "@type": "rest",
+                    "method": "POST",
+                    "configKey": "updateLedger",
+                    "body": {
+                        "transactionId": "TXN12345"
+                    }
+                },
+                {
+                    "@type": "rest",
+                    "method": "POST",
+                    "configKey": "settlementPost",
+                    "body": {
+                        "transactionId": "TXN12345"
+                    }
+                }
+            ]
+        },
+        {
+            "@type": "rest",
+            "method": "POST",
+            "configKey": "notifyEmail",
+            "body": {
+                "transactionId": "TXN12345",
+                "email": "customer@example.com"
+            }
+        },
+        {
+            "@type": "rest",
+            "method": "POST",
+            "configKey": "notifySms",
+            "body": {
+                "transactionId": "TXN12345",
+                "phone": "1234567890"
+            }
+        },
+        {
+            "@type": "rest",
+            "method": "POST",
+            "configKey": "analyticsUpdate",
+            "body": {
+                "transactionId": "TXN12345"
+            }
+        }
+    ]
+}
