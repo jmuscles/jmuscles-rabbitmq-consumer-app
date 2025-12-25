@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: JmusclesRabbitMqConsumer
+  cloud:
+    vault:
+      # Vault Server URI - Points to mock server for showcase
+      uri: http://localhost:9090
+      # Vault Token - Set to 'root' for local development/showcase
+      token: root
+      kv:
+        enabled: true
+        backend: secret
+        default-context: jmuscles/consumer-app
+      authentication: TOKEN

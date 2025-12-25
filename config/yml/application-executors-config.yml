@@ -8,6 +8,13 @@ jmuscles:
       addCallExecutionAttemptHeader: true		
       commonHeaders:
         Content-Type: "application/json"
+    restAuthTokens:
+      mockServerAuth:
+        url: "${cc-trans-posting-base-url}/oauth/token"
+        headers:
+          "Content-Type": "application/x-www-form-urlencoded"
+        body: "grant_type=client_credentials&client_id=${jmuscles.auth.mock-server.client-id}&client_secret=${jmuscles.auth.mock-server.client-secret}"
+        tokenPath: "access_token"
     restCalls:
       captureTransaction:
         url: "${cc-trans-posting-base-url}/transactions/capture"
@@ -27,6 +34,7 @@ jmuscles:
             - ".*\"balance\"\\s*:\\s*5000.*"
       fraudCheck:
         url: "${cc-trans-posting-base-url}/fraud/check"
+        tokenConfigKey: "mockServerAuth"
         httpHeader:
            x-success-execution-attempt: 2
         successCodePatterns:
