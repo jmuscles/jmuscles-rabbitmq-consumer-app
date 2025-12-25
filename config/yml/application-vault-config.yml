@@ -1,0 +1,20 @@
+# ===================================================================
+# Vault Connectivity Configuration
+# ===================================================================
+# This file handles the connection settings for HashiCorp Vault 
+# (or any other compatible Secret Manager).
+
+spring:
+  config:
+    import: "vault://"
+  cloud:
+    vault:
+      # Vault Server URI - Defaults to mock server port (9090) for showcase
+      uri: ${VAULT_URI:http://localhost:9090}
+      # Vault Token - Defaults to 'root' for development
+      token: ${VAULT_TOKEN:root}
+      kv:
+        enabled: true
+        backend: secret
+        default-context: jmuscles/consumer-app
+      authentication: TOKEN

@@ -21,9 +21,6 @@
 		
 		<jmuscles-post-fix>j21sb341-1.0</jmuscles-post-fix>
 		<jmuscles-rabbitmq-consumer.version>1.0</jmuscles-rabbitmq-consumer.version>
-
-
-		<otel.version>1.28.0</otel.version>
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -84,12 +81,6 @@
 			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
 
-		<!-- 
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bootstrap</artifactId>
-		</dependency>
-		-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -156,34 +147,14 @@
 
 
 		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-vault-config</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>jakarta.annotation</groupId>
 			<artifactId>jakarta.annotation-api</artifactId>
 		</dependency>
-
-	    <!--<dependency>
-	        <groupId>io.opentelemetry</groupId>
-	        <artifactId>opentelemetry-api</artifactId>
-	        <version>${otel.version}</version>
-	    </dependency>
-	
-	    <dependency>
-	        <groupId>io.opentelemetry.instrumentation</groupId>
-	        <artifactId>opentelemetry-instrumentation-annotations</artifactId>
-	        <version>${otel.version}</version>
-	    </dependency>
-	    
-	    <dependency>
-		    <groupId>io.opentelemetry</groupId>
-		    <artifactId>opentelemetry-sdk</artifactId>
-		    <version>${otel.version}</version>
-		</dependency>
-	
-	    <dependency>
-	        <groupId>io.opentelemetry.instrumentation</groupId>
-	        <artifactId>opentelemetry-log4j-context-data-2.17-autoconfigure</artifactId>
-	        <version>1.28.0-alpha</version>
-	        <scope>runtime</scope>
-	    </dependency>-->
 
 	</dependencies>
 
